@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>FUTSHOT — Arena</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<div id="main-menu">
+  <canvas id="menuCanvas"></canvas>
+  <div class="menu-overlay">
+    <div class="menu-logo-wrap">
+      <div class="menu-logo"><span class="ml-fut">FUT</span><span class="ml-shot">SHOT</span></div>
+      <div class="menu-tagline">ARENA 2 JOGADORES</div>
+    </div>
+    <div class="menu-buttons">
+      <button class="menu-btn" id="btn-mode1">
+        <div class="mbtn-icon">⚽</div>
+        <div class="mbtn-content">
+          <div class="mbtn-title">CAMPO CLÁSSICO</div>
+          <div class="mbtn-sub">2 jogadores • Zonas separadas • 60 segundos</div>
+        </div>
+        <div class="mbtn-arrow">›</div>
+      </button>
+    </div>
+    <div class="menu-footer">Pressione para começar</div>
+  </div>
+</div>
+
+<div id="intro-screen">
+  <div class="intro-bg"></div>
+  <div class="intro-content">
+    <div class="intro-logo">
+      <span class="logo-fut">FUT</span><span class="logo-shot">SHOT</span>
+    </div>
+    <div class="intro-subtitle">CAMPO CLÁSSICO</div>
+    <div class="controls-info">
+      <div class="ctrl-block blue">
+        <div class="ctrl-label">JOGADOR 1</div>
+        <div class="ctrl-keys">
+          <span class="key">↑ ↓ ← →</span> Mover
+          <span class="key">SPACE</span> Chutar
+        </div>
+      </div>
+      <div class="ctrl-vs">VS</div>
+      <div class="ctrl-block red">
+        <div class="ctrl-label">JOGADOR 2</div>
+        <div class="ctrl-keys">
+          <span class="key">W A S D</span> Mover
+          <span class="key">F</span> Chutar
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;gap:16px;margin-top:4px;">
+      <button id="start-btn" class="pulse-btn">JOGAR</button>
+      <button id="back-btn-intro" class="pulse-btn pulse-btn-ghost">← MENU</button>
+    </div>
+  </div>
+</div>
+
+<div id="countdown-overlay">
+  <div id="countdown-number">3</div>
+</div>
+
+<div id="game-screen">
+  <div id="hud">
+    <div class="hud-player blue-player">
+      <div class="player-avatar blue-avatar">P1</div>
+      <div class="player-info">
+        <div class="player-name">JOGADOR 1</div>
+        <div class="player-score" id="score1">0</div>
+      </div>
+    </div>
+    <div class="hud-center">
+      <div class="timer-label">TEMPO</div>
+      <div id="timer-display">1:00</div>
+      <div class="phase-badge" id="phase-badge">FASE 1 • 1PT</div>
+    </div>
+    <div class="hud-player red-player">
+      <div class="player-info right-info">
+        <div class="player-name">JOGADOR 2</div>
+        <div class="player-score" id="score2">0</div>
+      </div>
+      <div class="player-avatar red-avatar">P2</div>
+    </div>
+  </div>
+  <button id="pause-btn" title="Pausar (P ou ESC)">⏸</button>
+  <canvas id="gameCanvas"></canvas>
+</div>
+
+<div id="pause-overlay">
+  <div class="pause-box">
+    <div class="pause-title">PAUSADO</div>
+
+    <div class="volume-controls">
+      <div class="vol-section-label">VOLUME</div>
+
+      <div class="vol-row">
+        <span class="vol-label">🎵 JOGO</span>
+        <input type="range" id="vol-jogo" class="vol-slider" min="0" max="100" value="100">
+        <span class="vol-val" id="val-jogo">100</span>
+      </div>
+
+      <div class="vol-row">
+        <span class="vol-label">📣 TORCIDA</span>
+        <input type="range" id="vol-torcida" class="vol-slider" min="0" max="100" value="70">
+        <span class="vol-val" id="val-torcida">70</span>
+      </div>
+
+      <div class="vol-row">
+        <span class="vol-label">⚽ CHUTE</span>
+        <input type="range" id="vol-kick" class="vol-slider" min="0" max="100" value="100">
+        <span class="vol-val" id="val-kick">100</span>
+      </div>
+    </div>
+
+    <div class="pause-btns">
+      <button id="resume-btn" class="pause-action-btn primary">▶ CONTINUAR</button>
+      <button id="exit-to-menu-btn" class="pause-action-btn ghost">⌂ SAIR</button>
+    </div>
+
+    <div class="pause-hint">P ou ESC para continuar</div>
+  </div>
+</div>
+
+<div id="end-screen">
+  <div class="end-bg"></div>
+  <div class="end-content">
+    <div class="end-trophy">🏆</div>
+    <div class="end-winner" id="end-winner">JOGADOR 1 VENCE!</div>
+    <div class="end-scores">
+      <div class="end-score-block blue-end">
+        <div class="end-score-name">J1</div>
+        <div class="end-score-val" id="end-score1">0</div>
+      </div>
+      <div class="end-score-sep">×</div>
+      <div class="end-score-block red-end">
+        <div class="end-score-name">J2</div>
+        <div class="end-score-val" id="end-score2">0</div>
+      </div>
+    </div>
+    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+      <button id="restart-btn" class="pulse-btn">↺ JOGAR NOVAMENTE</button>
+      <button id="menu-btn-end" class="pulse-btn pulse-btn-ghost">⌂ MENU</button>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
